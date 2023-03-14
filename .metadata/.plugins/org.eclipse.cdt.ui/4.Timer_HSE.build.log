@@ -1,0 +1,10 @@
+00:02:07 **** Incremental Build of configuration Debug for project 4.Timer_HSE ****
+make -j12 all 
+arm-none-eabi-size   4.Timer_HSE.elf 
+   text	   data	    bss	    dec	    hex	filename
+    860	      8	   1568	   2436	    984	4.Timer_HSE.elf
+Finished building: default.size.stdout
+ 
+
+00:02:07 Build Finished. 0 errors, 0 warnings. (took 301ms)
+

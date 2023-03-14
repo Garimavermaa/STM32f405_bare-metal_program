@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;6.Timer_input_capture/Inc/stm32f405xx.h&apos; to &apos;stm32f4xx.h&apos;" description="Rename resource &apos;stm32f405xx.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Inc/stm32f405xx.h" name="stm32f4xx.h" stamp="1677074721291" updateReferences="true"/>
+</session>

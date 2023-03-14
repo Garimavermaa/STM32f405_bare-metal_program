@@ -1,0 +1,12 @@
+D:/STM32/CMSIS/Include/core_cm4.h:1688:22:__NVIC_EnableIRQ	16	static
+../Src/main.c:41:6:swt_config	8	static
+../Src/main.c:54:6:UART4_config	8	static
+../Src/main.c:73:6:UART4_sendchar	16	static
+../Src/main.c:79:6:UART4_sendstring	16	static
+../Src/main.c:87:6:UART4_IRQHandler	4	static
+../Src/main.c:95:9:stringcmp	24	static
+../Src/main.c:115:6:EXTI9_5_IRQHandler	4	static
+../Src/main.c:125:6:EXTI3_IRQHandler	4	static
+../Src/main.c:134:6:led_config	4	static
+../Src/main.c:144:6:check_ledstatus	16	static
+../Src/main.c:174:5:main	8	static

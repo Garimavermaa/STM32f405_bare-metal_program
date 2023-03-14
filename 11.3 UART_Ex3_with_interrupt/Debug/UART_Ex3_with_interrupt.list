@@ -1,0 +1,855 @@
+
+UART_Ex3_with_interrupt.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .isr_vector   000001a8  08000000  08000000  00010000  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         000004f8  080001a8  080001a8  000101a8  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .rodata       00000008  080006a0  080006a0  000106a0  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  3 .ARM.extab    00000000  080006a8  080006a8  00020004  2**0
+                  CONTENTS
+  4 .ARM          00000000  080006a8  080006a8  00020004  2**0
+                  CONTENTS
+  5 .preinit_array 00000000  080006a8  080006a8  00020004  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  6 .init_array   00000004  080006a8  080006a8  000106a8  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  7 .fini_array   00000004  080006ac  080006ac  000106ac  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  8 .data         00000004  20000000  080006b0  00020000  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  9 .ccmram       00000000  10000000  10000000  00020004  2**0
+                  CONTENTS
+ 10 .bss          00000028  20000004  20000004  00020004  2**2
+                  ALLOC
+ 11 ._user_heap_stack 00000604  2000002c  2000002c  00020004  2**0
+                  ALLOC
+ 12 .ARM.attributes 0000002a  00000000  00000000  00020004  2**0
+                  CONTENTS, READONLY
+ 13 .debug_info   000009ed  00000000  00000000  0002002e  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 14 .debug_abbrev 00000279  00000000  00000000  00020a1b  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 15 .debug_aranges 000000a0  00000000  00000000  00020c98  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 16 .debug_ranges 00000088  00000000  00000000  00020d38  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 17 .debug_macro  000164f3  00000000  00000000  00020dc0  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 18 .debug_line   00000722  00000000  00000000  000372b3  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 19 .debug_str    0007e09f  00000000  00000000  000379d5  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 20 .comment      00000050  00000000  00000000  000b5a74  2**0
+                  CONTENTS, READONLY
+ 21 .debug_frame  000001d0  00000000  00000000  000b5ac4  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+
+Disassembly of section .text:
+
+080001a8 <__do_global_dtors_aux>:
+ 80001a8:	b510      	push	{r4, lr}
+ 80001aa:	4c05      	ldr	r4, [pc, #20]	; (80001c0 <__do_global_dtors_aux+0x18>)
+ 80001ac:	7823      	ldrb	r3, [r4, #0]
+ 80001ae:	b933      	cbnz	r3, 80001be <__do_global_dtors_aux+0x16>
+ 80001b0:	4b04      	ldr	r3, [pc, #16]	; (80001c4 <__do_global_dtors_aux+0x1c>)
+ 80001b2:	b113      	cbz	r3, 80001ba <__do_global_dtors_aux+0x12>
+ 80001b4:	4804      	ldr	r0, [pc, #16]	; (80001c8 <__do_global_dtors_aux+0x20>)
+ 80001b6:	f3af 8000 	nop.w
+ 80001ba:	2301      	movs	r3, #1
+ 80001bc:	7023      	strb	r3, [r4, #0]
+ 80001be:	bd10      	pop	{r4, pc}
+ 80001c0:	20000004 	.word	0x20000004
+ 80001c4:	00000000 	.word	0x00000000
+ 80001c8:	08000688 	.word	0x08000688
+
+080001cc <frame_dummy>:
+ 80001cc:	b508      	push	{r3, lr}
+ 80001ce:	4b03      	ldr	r3, [pc, #12]	; (80001dc <frame_dummy+0x10>)
+ 80001d0:	b11b      	cbz	r3, 80001da <frame_dummy+0xe>
+ 80001d2:	4903      	ldr	r1, [pc, #12]	; (80001e0 <frame_dummy+0x14>)
+ 80001d4:	4803      	ldr	r0, [pc, #12]	; (80001e4 <frame_dummy+0x18>)
+ 80001d6:	f3af 8000 	nop.w
+ 80001da:	bd08      	pop	{r3, pc}
+ 80001dc:	00000000 	.word	0x00000000
+ 80001e0:	20000008 	.word	0x20000008
+ 80001e4:	08000688 	.word	0x08000688
+
+080001e8 <__NVIC_EnableIRQ>:
+  \details Enables a device specific interrupt in the NVIC interrupt controller.
+  \param [in]      IRQn  Device specific interrupt number.
+  \note    IRQn must not be negative.
+ */
+__STATIC_INLINE void __NVIC_EnableIRQ(IRQn_Type IRQn)
+{
+ 80001e8:	b480      	push	{r7}
+ 80001ea:	b083      	sub	sp, #12
+ 80001ec:	af00      	add	r7, sp, #0
+ 80001ee:	4603      	mov	r3, r0
+ 80001f0:	71fb      	strb	r3, [r7, #7]
+  if ((int32_t)(IRQn) >= 0)
+ 80001f2:	f997 3007 	ldrsb.w	r3, [r7, #7]
+ 80001f6:	2b00      	cmp	r3, #0
+ 80001f8:	db0b      	blt.n	8000212 <__NVIC_EnableIRQ+0x2a>
+  {
+    NVIC->ISER[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 80001fa:	79fb      	ldrb	r3, [r7, #7]
+ 80001fc:	f003 021f 	and.w	r2, r3, #31
+ 8000200:	4906      	ldr	r1, [pc, #24]	; (800021c <__NVIC_EnableIRQ+0x34>)
+ 8000202:	f997 3007 	ldrsb.w	r3, [r7, #7]
+ 8000206:	095b      	lsrs	r3, r3, #5
+ 8000208:	2001      	movs	r0, #1
+ 800020a:	fa00 f202 	lsl.w	r2, r0, r2
+ 800020e:	f841 2023 	str.w	r2, [r1, r3, lsl #2]
+  }
+}
+ 8000212:	bf00      	nop
+ 8000214:	370c      	adds	r7, #12
+ 8000216:	46bd      	mov	sp, r7
+ 8000218:	bc80      	pop	{r7}
+ 800021a:	4770      	bx	lr
+ 800021c:	e000e100 	.word	0xe000e100
+
+08000220 <swt_config>:
+#define CLEAR 2
+char rx_data[10];
+uint8_t ind=0;
+uint8_t status =CLEAR;
+void swt_config()
+{
+ 8000220:	b580      	push	{r7, lr}
+ 8000222:	af00      	add	r7, sp, #0
+		RCC->AHB1ENR |= (1<<1);		//enable GPIOB clock
+ 8000224:	4b1b      	ldr	r3, [pc, #108]	; (8000294 <swt_config+0x74>)
+ 8000226:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 8000228:	4a1a      	ldr	r2, [pc, #104]	; (8000294 <swt_config+0x74>)
+ 800022a:	f043 0302 	orr.w	r3, r3, #2
+ 800022e:	6313      	str	r3, [r2, #48]	; 0x30
+		GPIOB->MODER &= ~(3<<14);	// Input mode PB7
+ 8000230:	4b19      	ldr	r3, [pc, #100]	; (8000298 <swt_config+0x78>)
+ 8000232:	681b      	ldr	r3, [r3, #0]
+ 8000234:	4a18      	ldr	r2, [pc, #96]	; (8000298 <swt_config+0x78>)
+ 8000236:	f423 4340 	bic.w	r3, r3, #49152	; 0xc000
+ 800023a:	6013      	str	r3, [r2, #0]
+		GPIOB->MODER &= ~(3<<6);	// Input mOde PB3
+ 800023c:	4b16      	ldr	r3, [pc, #88]	; (8000298 <swt_config+0x78>)
+ 800023e:	681b      	ldr	r3, [r3, #0]
+ 8000240:	4a15      	ldr	r2, [pc, #84]	; (8000298 <swt_config+0x78>)
+ 8000242:	f023 03c0 	bic.w	r3, r3, #192	; 0xc0
+ 8000246:	6013      	str	r3, [r2, #0]
+		RCC->APB2ENR |= (1<<14);	//SYSCFG enable
+ 8000248:	4b12      	ldr	r3, [pc, #72]	; (8000294 <swt_config+0x74>)
+ 800024a:	6c5b      	ldr	r3, [r3, #68]	; 0x44
+ 800024c:	4a11      	ldr	r2, [pc, #68]	; (8000294 <swt_config+0x74>)
+ 800024e:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
+ 8000252:	6453      	str	r3, [r2, #68]	; 0x44
+		SYSCFG->EXTICR[1] |= (1<<12);		// Enable External interrupt in PB7
+ 8000254:	4b11      	ldr	r3, [pc, #68]	; (800029c <swt_config+0x7c>)
+ 8000256:	68db      	ldr	r3, [r3, #12]
+ 8000258:	4a10      	ldr	r2, [pc, #64]	; (800029c <swt_config+0x7c>)
+ 800025a:	f443 5380 	orr.w	r3, r3, #4096	; 0x1000
+ 800025e:	60d3      	str	r3, [r2, #12]
+		SYSCFG->EXTICR[0] |= (1<<12);		// Enable external interrupt in PB3
+ 8000260:	4b0e      	ldr	r3, [pc, #56]	; (800029c <swt_config+0x7c>)
+ 8000262:	689b      	ldr	r3, [r3, #8]
+ 8000264:	4a0d      	ldr	r2, [pc, #52]	; (800029c <swt_config+0x7c>)
+ 8000266:	f443 5380 	orr.w	r3, r3, #4096	; 0x1000
+ 800026a:	6093      	str	r3, [r2, #8]
+		EXTI->IMR |= (1<<7)|(1<<3);		// Line 7 & 3 of External Interrupt not masked
+ 800026c:	4b0c      	ldr	r3, [pc, #48]	; (80002a0 <swt_config+0x80>)
+ 800026e:	681b      	ldr	r3, [r3, #0]
+ 8000270:	4a0b      	ldr	r2, [pc, #44]	; (80002a0 <swt_config+0x80>)
+ 8000272:	f043 0388 	orr.w	r3, r3, #136	; 0x88
+ 8000276:	6013      	str	r3, [r2, #0]
+		EXTI->FTSR |= (1<<7)|(1<<3);		// Falling edge Interrupt enable for PB7, PB3
+ 8000278:	4b09      	ldr	r3, [pc, #36]	; (80002a0 <swt_config+0x80>)
+ 800027a:	68db      	ldr	r3, [r3, #12]
+ 800027c:	4a08      	ldr	r2, [pc, #32]	; (80002a0 <swt_config+0x80>)
+ 800027e:	f043 0388 	orr.w	r3, r3, #136	; 0x88
+ 8000282:	60d3      	str	r3, [r2, #12]
+		NVIC_EnableIRQ(EXTI9_5_IRQn); // Enable External Interrupt for pin 5-9
+ 8000284:	2017      	movs	r0, #23
+ 8000286:	f7ff ffaf 	bl	80001e8 <__NVIC_EnableIRQ>
+		NVIC_EnableIRQ(EXTI3_IRQn); // Enable External Interrupt for pin PB3
+ 800028a:	2009      	movs	r0, #9
+ 800028c:	f7ff ffac 	bl	80001e8 <__NVIC_EnableIRQ>
+}
+ 8000290:	bf00      	nop
+ 8000292:	bd80      	pop	{r7, pc}
+ 8000294:	40023800 	.word	0x40023800
+ 8000298:	40020400 	.word	0x40020400
+ 800029c:	40013800 	.word	0x40013800
+ 80002a0:	40013c00 	.word	0x40013c00
+
+080002a4 <UART4_config>:
+void UART4_config()
+{
+ 80002a4:	b580      	push	{r7, lr}
+ 80002a6:	af00      	add	r7, sp, #0
+	/*UART port pin config*/
+	RCC->AHB1ENR |= (1<<0);			// enable GPIOA clock
+ 80002a8:	4b25      	ldr	r3, [pc, #148]	; (8000340 <UART4_config+0x9c>)
+ 80002aa:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 80002ac:	4a24      	ldr	r2, [pc, #144]	; (8000340 <UART4_config+0x9c>)
+ 80002ae:	f043 0301 	orr.w	r3, r3, #1
+ 80002b2:	6313      	str	r3, [r2, #48]	; 0x30
+	GPIOA->MODER &= ~(0xF<<0);		// enable alternate fn in PA0 & 1
+ 80002b4:	4b23      	ldr	r3, [pc, #140]	; (8000344 <UART4_config+0xa0>)
+ 80002b6:	681b      	ldr	r3, [r3, #0]
+ 80002b8:	4a22      	ldr	r2, [pc, #136]	; (8000344 <UART4_config+0xa0>)
+ 80002ba:	f023 030f 	bic.w	r3, r3, #15
+ 80002be:	6013      	str	r3, [r2, #0]
+	GPIOA->MODER |=(0xA<<0);
+ 80002c0:	4b20      	ldr	r3, [pc, #128]	; (8000344 <UART4_config+0xa0>)
+ 80002c2:	681b      	ldr	r3, [r3, #0]
+ 80002c4:	4a1f      	ldr	r2, [pc, #124]	; (8000344 <UART4_config+0xa0>)
+ 80002c6:	f043 030a 	orr.w	r3, r3, #10
+ 80002ca:	6013      	str	r3, [r2, #0]
+	GPIOA->AFR[0] &= ~(0xFF<<0);	// enable UART4 TX & RX function for PA0 & PA1
+ 80002cc:	4b1d      	ldr	r3, [pc, #116]	; (8000344 <UART4_config+0xa0>)
+ 80002ce:	6a1b      	ldr	r3, [r3, #32]
+ 80002d0:	4a1c      	ldr	r2, [pc, #112]	; (8000344 <UART4_config+0xa0>)
+ 80002d2:	f023 03ff 	bic.w	r3, r3, #255	; 0xff
+ 80002d6:	6213      	str	r3, [r2, #32]
+	GPIOA->AFR[0] |= (0x88<<0);
+ 80002d8:	4b1a      	ldr	r3, [pc, #104]	; (8000344 <UART4_config+0xa0>)
+ 80002da:	6a1b      	ldr	r3, [r3, #32]
+ 80002dc:	4a19      	ldr	r2, [pc, #100]	; (8000344 <UART4_config+0xa0>)
+ 80002de:	f043 0388 	orr.w	r3, r3, #136	; 0x88
+ 80002e2:	6213      	str	r3, [r2, #32]
+	GPIOA->OSPEEDR |= (0xF<<0);		// set output speed as high speed
+ 80002e4:	4b17      	ldr	r3, [pc, #92]	; (8000344 <UART4_config+0xa0>)
+ 80002e6:	689b      	ldr	r3, [r3, #8]
+ 80002e8:	4a16      	ldr	r2, [pc, #88]	; (8000344 <UART4_config+0xa0>)
+ 80002ea:	f043 030f 	orr.w	r3, r3, #15
+ 80002ee:	6093      	str	r3, [r2, #8]
+	/*UART4 config */
+	RCC->APB1ENR |= (1<<19); 		// enable UART4 clock
+ 80002f0:	4b13      	ldr	r3, [pc, #76]	; (8000340 <UART4_config+0x9c>)
+ 80002f2:	6c1b      	ldr	r3, [r3, #64]	; 0x40
+ 80002f4:	4a12      	ldr	r2, [pc, #72]	; (8000340 <UART4_config+0x9c>)
+ 80002f6:	f443 2300 	orr.w	r3, r3, #524288	; 0x80000
+ 80002fa:	6413      	str	r3, [r2, #64]	; 0x40
+	UART4->CR1 |= (1<<13); 			//Uart4 is enabled
+ 80002fc:	4b12      	ldr	r3, [pc, #72]	; (8000348 <UART4_config+0xa4>)
+ 80002fe:	68db      	ldr	r3, [r3, #12]
+ 8000300:	4a11      	ldr	r2, [pc, #68]	; (8000348 <UART4_config+0xa4>)
+ 8000302:	f443 5300 	orr.w	r3, r3, #8192	; 0x2000
+ 8000306:	60d3      	str	r3, [r2, #12]
+	UART4->CR1 &= ~(1<<12); 		//set 8bit data mode
+ 8000308:	4b0f      	ldr	r3, [pc, #60]	; (8000348 <UART4_config+0xa4>)
+ 800030a:	68db      	ldr	r3, [r3, #12]
+ 800030c:	4a0e      	ldr	r2, [pc, #56]	; (8000348 <UART4_config+0xa4>)
+ 800030e:	f423 5380 	bic.w	r3, r3, #4096	; 0x1000
+ 8000312:	60d3      	str	r3, [r2, #12]
+ 	UART4->BRR = 0x683;				// baudrate for 9600
+ 8000314:	4b0c      	ldr	r3, [pc, #48]	; (8000348 <UART4_config+0xa4>)
+ 8000316:	f240 6283 	movw	r2, #1667	; 0x683
+ 800031a:	609a      	str	r2, [r3, #8]
+ 	UART4->CR1 |= (1<<5); 			//Uart4 Rx interrupt enable
+ 800031c:	4b0a      	ldr	r3, [pc, #40]	; (8000348 <UART4_config+0xa4>)
+ 800031e:	68db      	ldr	r3, [r3, #12]
+ 8000320:	4a09      	ldr	r2, [pc, #36]	; (8000348 <UART4_config+0xa4>)
+ 8000322:	f043 0320 	orr.w	r3, r3, #32
+ 8000326:	60d3      	str	r3, [r2, #12]
+ 	UART4->CR1 |= (3<<2); 			// TE & RE enable
+ 8000328:	4b07      	ldr	r3, [pc, #28]	; (8000348 <UART4_config+0xa4>)
+ 800032a:	68db      	ldr	r3, [r3, #12]
+ 800032c:	4a06      	ldr	r2, [pc, #24]	; (8000348 <UART4_config+0xa4>)
+ 800032e:	f043 030c 	orr.w	r3, r3, #12
+ 8000332:	60d3      	str	r3, [r2, #12]
+ 	NVIC_EnableIRQ(UART4_IRQn);		// UART4 Rx interrupt enable in NVIC
+ 8000334:	2034      	movs	r0, #52	; 0x34
+ 8000336:	f7ff ff57 	bl	80001e8 <__NVIC_EnableIRQ>
+}
+ 800033a:	bf00      	nop
+ 800033c:	bd80      	pop	{r7, pc}
+ 800033e:	bf00      	nop
+ 8000340:	40023800 	.word	0x40023800
+ 8000344:	40020000 	.word	0x40020000
+ 8000348:	40004c00 	.word	0x40004c00
+
+0800034c <UART4_sendchar>:
+
+void UART4_sendchar(uint8_t x)
+{
+ 800034c:	b480      	push	{r7}
+ 800034e:	b083      	sub	sp, #12
+ 8000350:	af00      	add	r7, sp, #0
+ 8000352:	4603      	mov	r3, r0
+ 8000354:	71fb      	strb	r3, [r7, #7]
+	UART4->DR = x;						/*Please the data in DR register for transmitting*/
+ 8000356:	4a08      	ldr	r2, [pc, #32]	; (8000378 <UART4_sendchar+0x2c>)
+ 8000358:	79fb      	ldrb	r3, [r7, #7]
+ 800035a:	6053      	str	r3, [r2, #4]
+	while(!(UART4->SR & (1<<6)));		/*Wait until TC (Transmission complete) is 1*/
+ 800035c:	bf00      	nop
+ 800035e:	4b06      	ldr	r3, [pc, #24]	; (8000378 <UART4_sendchar+0x2c>)
+ 8000360:	681b      	ldr	r3, [r3, #0]
+ 8000362:	f003 0340 	and.w	r3, r3, #64	; 0x40
+ 8000366:	2b00      	cmp	r3, #0
+ 8000368:	d0f9      	beq.n	800035e <UART4_sendchar+0x12>
+}
+ 800036a:	bf00      	nop
+ 800036c:	bf00      	nop
+ 800036e:	370c      	adds	r7, #12
+ 8000370:	46bd      	mov	sp, r7
+ 8000372:	bc80      	pop	{r7}
+ 8000374:	4770      	bx	lr
+ 8000376:	bf00      	nop
+ 8000378:	40004c00 	.word	0x40004c00
+
+0800037c <UART4_sendstring>:
+
+void UART4_sendstring(char *string)
+{
+ 800037c:	b580      	push	{r7, lr}
+ 800037e:	b082      	sub	sp, #8
+ 8000380:	af00      	add	r7, sp, #0
+ 8000382:	6078      	str	r0, [r7, #4]
+	while(*string)
+ 8000384:	e006      	b.n	8000394 <UART4_sendstring+0x18>
+	{
+		UART4_sendchar(*string++);
+ 8000386:	687b      	ldr	r3, [r7, #4]
+ 8000388:	1c5a      	adds	r2, r3, #1
+ 800038a:	607a      	str	r2, [r7, #4]
+ 800038c:	781b      	ldrb	r3, [r3, #0]
+ 800038e:	4618      	mov	r0, r3
+ 8000390:	f7ff ffdc 	bl	800034c <UART4_sendchar>
+	while(*string)
+ 8000394:	687b      	ldr	r3, [r7, #4]
+ 8000396:	781b      	ldrb	r3, [r3, #0]
+ 8000398:	2b00      	cmp	r3, #0
+ 800039a:	d1f4      	bne.n	8000386 <UART4_sendstring+0xa>
+	}
+}
+ 800039c:	bf00      	nop
+ 800039e:	bf00      	nop
+ 80003a0:	3708      	adds	r7, #8
+ 80003a2:	46bd      	mov	sp, r7
+ 80003a4:	bd80      	pop	{r7, pc}
+	...
+
+080003a8 <UART4_IRQHandler>:
+
+void UART4_IRQHandler()
+{
+ 80003a8:	b480      	push	{r7}
+ 80003aa:	af00      	add	r7, sp, #0
+	//while(!(UART4->SR & (1<<5)));		/*wait until RXNE bit is set which indicates data receive*/
+	rx_data[ind]=UART4->DR;
+ 80003ac:	4b0b      	ldr	r3, [pc, #44]	; (80003dc <UART4_IRQHandler+0x34>)
+ 80003ae:	6859      	ldr	r1, [r3, #4]
+ 80003b0:	4b0b      	ldr	r3, [pc, #44]	; (80003e0 <UART4_IRQHandler+0x38>)
+ 80003b2:	781b      	ldrb	r3, [r3, #0]
+ 80003b4:	461a      	mov	r2, r3
+ 80003b6:	b2c9      	uxtb	r1, r1
+ 80003b8:	4b0a      	ldr	r3, [pc, #40]	; (80003e4 <UART4_IRQHandler+0x3c>)
+ 80003ba:	5499      	strb	r1, [r3, r2]
+	ind++;
+ 80003bc:	4b08      	ldr	r3, [pc, #32]	; (80003e0 <UART4_IRQHandler+0x38>)
+ 80003be:	781b      	ldrb	r3, [r3, #0]
+ 80003c0:	3301      	adds	r3, #1
+ 80003c2:	b2da      	uxtb	r2, r3
+ 80003c4:	4b06      	ldr	r3, [pc, #24]	; (80003e0 <UART4_IRQHandler+0x38>)
+ 80003c6:	701a      	strb	r2, [r3, #0]
+	rx_data[ind]='\0';
+ 80003c8:	4b05      	ldr	r3, [pc, #20]	; (80003e0 <UART4_IRQHandler+0x38>)
+ 80003ca:	781b      	ldrb	r3, [r3, #0]
+ 80003cc:	461a      	mov	r2, r3
+ 80003ce:	4b05      	ldr	r3, [pc, #20]	; (80003e4 <UART4_IRQHandler+0x3c>)
+ 80003d0:	2100      	movs	r1, #0
+ 80003d2:	5499      	strb	r1, [r3, r2]
+}
+ 80003d4:	bf00      	nop
+ 80003d6:	46bd      	mov	sp, r7
+ 80003d8:	bc80      	pop	{r7}
+ 80003da:	4770      	bx	lr
+ 80003dc:	40004c00 	.word	0x40004c00
+ 80003e0:	2000002a 	.word	0x2000002a
+ 80003e4:	20000020 	.word	0x20000020
+
+080003e8 <stringcmp>:
+
+uint8_t stringcmp(const char *string1, const char *string2)
+{
+ 80003e8:	b480      	push	{r7}
+ 80003ea:	b085      	sub	sp, #20
+ 80003ec:	af00      	add	r7, sp, #0
+ 80003ee:	6078      	str	r0, [r7, #4]
+ 80003f0:	6039      	str	r1, [r7, #0]
+	uint8_t flag=1,i=0;
+ 80003f2:	2301      	movs	r3, #1
+ 80003f4:	73fb      	strb	r3, [r7, #15]
+ 80003f6:	2300      	movs	r3, #0
+ 80003f8:	73bb      	strb	r3, [r7, #14]
+	while(string1[i]!='\0'&& string2[i]!='\0')
+ 80003fa:	e011      	b.n	8000420 <stringcmp+0x38>
+	{
+		if(string1[i]!=string2[i])
+ 80003fc:	7bbb      	ldrb	r3, [r7, #14]
+ 80003fe:	687a      	ldr	r2, [r7, #4]
+ 8000400:	4413      	add	r3, r2
+ 8000402:	781a      	ldrb	r2, [r3, #0]
+ 8000404:	7bbb      	ldrb	r3, [r7, #14]
+ 8000406:	6839      	ldr	r1, [r7, #0]
+ 8000408:	440b      	add	r3, r1
+ 800040a:	781b      	ldrb	r3, [r3, #0]
+ 800040c:	429a      	cmp	r2, r3
+ 800040e:	d002      	beq.n	8000416 <stringcmp+0x2e>
+		{
+			flag=1;
+ 8000410:	2301      	movs	r3, #1
+ 8000412:	73fb      	strb	r3, [r7, #15]
+			break;
+ 8000414:	e010      	b.n	8000438 <stringcmp+0x50>
+		}
+		i++;
+ 8000416:	7bbb      	ldrb	r3, [r7, #14]
+ 8000418:	3301      	adds	r3, #1
+ 800041a:	73bb      	strb	r3, [r7, #14]
+		flag=0;
+ 800041c:	2300      	movs	r3, #0
+ 800041e:	73fb      	strb	r3, [r7, #15]
+	while(string1[i]!='\0'&& string2[i]!='\0')
+ 8000420:	7bbb      	ldrb	r3, [r7, #14]
+ 8000422:	687a      	ldr	r2, [r7, #4]
+ 8000424:	4413      	add	r3, r2
+ 8000426:	781b      	ldrb	r3, [r3, #0]
+ 8000428:	2b00      	cmp	r3, #0
+ 800042a:	d005      	beq.n	8000438 <stringcmp+0x50>
+ 800042c:	7bbb      	ldrb	r3, [r7, #14]
+ 800042e:	683a      	ldr	r2, [r7, #0]
+ 8000430:	4413      	add	r3, r2
+ 8000432:	781b      	ldrb	r3, [r3, #0]
+ 8000434:	2b00      	cmp	r3, #0
+ 8000436:	d1e1      	bne.n	80003fc <stringcmp+0x14>
+	}
+	if(flag==0)
+ 8000438:	7bfb      	ldrb	r3, [r7, #15]
+ 800043a:	2b00      	cmp	r3, #0
+ 800043c:	d101      	bne.n	8000442 <stringcmp+0x5a>
+		return 0;
+ 800043e:	2300      	movs	r3, #0
+ 8000440:	e000      	b.n	8000444 <stringcmp+0x5c>
+	else
+		return 1;
+ 8000442:	2301      	movs	r3, #1
+}
+ 8000444:	4618      	mov	r0, r3
+ 8000446:	3714      	adds	r7, #20
+ 8000448:	46bd      	mov	sp, r7
+ 800044a:	bc80      	pop	{r7}
+ 800044c:	4770      	bx	lr
+	...
+
+08000450 <EXTI9_5_IRQHandler>:
+
+/*Since we using PB7- 7th GPIO pin we need to use this IRQn*/
+void EXTI9_5_IRQHandler()
+{
+ 8000450:	b480      	push	{r7}
+ 8000452:	af00      	add	r7, sp, #0
+	if(EXTI->PR & (1<<7))		// check for Interrupt trigger occurs
+ 8000454:	4b09      	ldr	r3, [pc, #36]	; (800047c <EXTI9_5_IRQHandler+0x2c>)
+ 8000456:	695b      	ldr	r3, [r3, #20]
+ 8000458:	f003 0380 	and.w	r3, r3, #128	; 0x80
+ 800045c:	2b00      	cmp	r3, #0
+ 800045e:	d008      	beq.n	8000472 <EXTI9_5_IRQHandler+0x22>
+	{
+		status=ON;
+ 8000460:	4b07      	ldr	r3, [pc, #28]	; (8000480 <EXTI9_5_IRQHandler+0x30>)
+ 8000462:	2201      	movs	r2, #1
+ 8000464:	701a      	strb	r2, [r3, #0]
+		EXTI->PR |= (1<<7);		// Set to clear the flag
+ 8000466:	4b05      	ldr	r3, [pc, #20]	; (800047c <EXTI9_5_IRQHandler+0x2c>)
+ 8000468:	695b      	ldr	r3, [r3, #20]
+ 800046a:	4a04      	ldr	r2, [pc, #16]	; (800047c <EXTI9_5_IRQHandler+0x2c>)
+ 800046c:	f043 0380 	orr.w	r3, r3, #128	; 0x80
+ 8000470:	6153      	str	r3, [r2, #20]
+	}
+}
+ 8000472:	bf00      	nop
+ 8000474:	46bd      	mov	sp, r7
+ 8000476:	bc80      	pop	{r7}
+ 8000478:	4770      	bx	lr
+ 800047a:	bf00      	nop
+ 800047c:	40013c00 	.word	0x40013c00
+ 8000480:	20000000 	.word	0x20000000
+
+08000484 <EXTI3_IRQHandler>:
+
+/*PB3 is used for External interrupt so need to use EXTI3_IRQn*/
+void EXTI3_IRQHandler()
+{
+ 8000484:	b480      	push	{r7}
+ 8000486:	af00      	add	r7, sp, #0
+	if(EXTI->PR & (1<<3))		// check for Interrupt trigger occurs
+ 8000488:	4b09      	ldr	r3, [pc, #36]	; (80004b0 <EXTI3_IRQHandler+0x2c>)
+ 800048a:	695b      	ldr	r3, [r3, #20]
+ 800048c:	f003 0308 	and.w	r3, r3, #8
+ 8000490:	2b00      	cmp	r3, #0
+ 8000492:	d008      	beq.n	80004a6 <EXTI3_IRQHandler+0x22>
+	{
+		status=OFF;
+ 8000494:	4b07      	ldr	r3, [pc, #28]	; (80004b4 <EXTI3_IRQHandler+0x30>)
+ 8000496:	2200      	movs	r2, #0
+ 8000498:	701a      	strb	r2, [r3, #0]
+		EXTI->PR |= (1<<3);		// Set to clear the flag
+ 800049a:	4b05      	ldr	r3, [pc, #20]	; (80004b0 <EXTI3_IRQHandler+0x2c>)
+ 800049c:	695b      	ldr	r3, [r3, #20]
+ 800049e:	4a04      	ldr	r2, [pc, #16]	; (80004b0 <EXTI3_IRQHandler+0x2c>)
+ 80004a0:	f043 0308 	orr.w	r3, r3, #8
+ 80004a4:	6153      	str	r3, [r2, #20]
+	}
+}
+ 80004a6:	bf00      	nop
+ 80004a8:	46bd      	mov	sp, r7
+ 80004aa:	bc80      	pop	{r7}
+ 80004ac:	4770      	bx	lr
+ 80004ae:	bf00      	nop
+ 80004b0:	40013c00 	.word	0x40013c00
+ 80004b4:	20000000 	.word	0x20000000
+
+080004b8 <led_config>:
+
+void led_config()
+{
+ 80004b8:	b480      	push	{r7}
+ 80004ba:	af00      	add	r7, sp, #0
+	RCC->AHB1ENR |= (1<<2);			// Enable clock for GPIOC
+ 80004bc:	4b13      	ldr	r3, [pc, #76]	; (800050c <led_config+0x54>)
+ 80004be:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 80004c0:	4a12      	ldr	r2, [pc, #72]	; (800050c <led_config+0x54>)
+ 80004c2:	f043 0304 	orr.w	r3, r3, #4
+ 80004c6:	6313      	str	r3, [r2, #48]	; 0x30
+	GPIOC->MODER &= ~(3<<12);		// Set PC6 as Output Mode
+ 80004c8:	4b11      	ldr	r3, [pc, #68]	; (8000510 <led_config+0x58>)
+ 80004ca:	681b      	ldr	r3, [r3, #0]
+ 80004cc:	4a10      	ldr	r2, [pc, #64]	; (8000510 <led_config+0x58>)
+ 80004ce:	f423 5340 	bic.w	r3, r3, #12288	; 0x3000
+ 80004d2:	6013      	str	r3, [r2, #0]
+	GPIOC->MODER |= (1<<12);
+ 80004d4:	4b0e      	ldr	r3, [pc, #56]	; (8000510 <led_config+0x58>)
+ 80004d6:	681b      	ldr	r3, [r3, #0]
+ 80004d8:	4a0d      	ldr	r2, [pc, #52]	; (8000510 <led_config+0x58>)
+ 80004da:	f443 5380 	orr.w	r3, r3, #4096	; 0x1000
+ 80004de:	6013      	str	r3, [r2, #0]
+	GPIOC->OTYPER &= ~(1<<6);		// PC6 as push pull output
+ 80004e0:	4b0b      	ldr	r3, [pc, #44]	; (8000510 <led_config+0x58>)
+ 80004e2:	685b      	ldr	r3, [r3, #4]
+ 80004e4:	4a0a      	ldr	r2, [pc, #40]	; (8000510 <led_config+0x58>)
+ 80004e6:	f023 0340 	bic.w	r3, r3, #64	; 0x40
+ 80004ea:	6053      	str	r3, [r2, #4]
+	GPIOC->OSPEEDR &= ~(3<<12);		// PC6 as low speed
+ 80004ec:	4b08      	ldr	r3, [pc, #32]	; (8000510 <led_config+0x58>)
+ 80004ee:	689b      	ldr	r3, [r3, #8]
+ 80004f0:	4a07      	ldr	r2, [pc, #28]	; (8000510 <led_config+0x58>)
+ 80004f2:	f423 5340 	bic.w	r3, r3, #12288	; 0x3000
+ 80004f6:	6093      	str	r3, [r2, #8]
+	GPIOC->ODR |= (1<<6);			// LED OFF
+ 80004f8:	4b05      	ldr	r3, [pc, #20]	; (8000510 <led_config+0x58>)
+ 80004fa:	695b      	ldr	r3, [r3, #20]
+ 80004fc:	4a04      	ldr	r2, [pc, #16]	; (8000510 <led_config+0x58>)
+ 80004fe:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+ 8000502:	6153      	str	r3, [r2, #20]
+}
+ 8000504:	bf00      	nop
+ 8000506:	46bd      	mov	sp, r7
+ 8000508:	bc80      	pop	{r7}
+ 800050a:	4770      	bx	lr
+ 800050c:	40023800 	.word	0x40023800
+ 8000510:	40020800 	.word	0x40020800
+
+08000514 <check_ledstatus>:
+
+void check_ledstatus()
+{
+ 8000514:	b580      	push	{r7, lr}
+ 8000516:	b082      	sub	sp, #8
+ 8000518:	af00      	add	r7, sp, #0
+	if(status==ON)
+ 800051a:	4b27      	ldr	r3, [pc, #156]	; (80005b8 <check_ledstatus+0xa4>)
+ 800051c:	781b      	ldrb	r3, [r3, #0]
+ 800051e:	2b01      	cmp	r3, #1
+ 8000520:	d106      	bne.n	8000530 <check_ledstatus+0x1c>
+	{
+		UART4_sendstring("ON");	// Send '1' in UART4
+ 8000522:	4826      	ldr	r0, [pc, #152]	; (80005bc <check_ledstatus+0xa8>)
+ 8000524:	f7ff ff2a 	bl	800037c <UART4_sendstring>
+		status=CLEAR;
+ 8000528:	4b23      	ldr	r3, [pc, #140]	; (80005b8 <check_ledstatus+0xa4>)
+ 800052a:	2202      	movs	r2, #2
+ 800052c:	701a      	strb	r2, [r3, #0]
+ 800052e:	e009      	b.n	8000544 <check_ledstatus+0x30>
+	}
+	else if(status==OFF)
+ 8000530:	4b21      	ldr	r3, [pc, #132]	; (80005b8 <check_ledstatus+0xa4>)
+ 8000532:	781b      	ldrb	r3, [r3, #0]
+ 8000534:	2b00      	cmp	r3, #0
+ 8000536:	d105      	bne.n	8000544 <check_ledstatus+0x30>
+	{
+		UART4_sendstring("OFF");	// Send '0' in UART4
+ 8000538:	4821      	ldr	r0, [pc, #132]	; (80005c0 <check_ledstatus+0xac>)
+ 800053a:	f7ff ff1f 	bl	800037c <UART4_sendstring>
+		status=CLEAR;
+ 800053e:	4b1e      	ldr	r3, [pc, #120]	; (80005b8 <check_ledstatus+0xa4>)
+ 8000540:	2202      	movs	r2, #2
+ 8000542:	701a      	strb	r2, [r3, #0]
+	}
+	if(!(stringcmp(rx_data,"ON")))			// if '1' receive LED ON
+ 8000544:	491d      	ldr	r1, [pc, #116]	; (80005bc <check_ledstatus+0xa8>)
+ 8000546:	481f      	ldr	r0, [pc, #124]	; (80005c4 <check_ledstatus+0xb0>)
+ 8000548:	f7ff ff4e 	bl	80003e8 <stringcmp>
+ 800054c:	4603      	mov	r3, r0
+ 800054e:	2b00      	cmp	r3, #0
+ 8000550:	d106      	bne.n	8000560 <check_ledstatus+0x4c>
+	{
+		GPIOC->ODR &= ~(1<<6);
+ 8000552:	4b1d      	ldr	r3, [pc, #116]	; (80005c8 <check_ledstatus+0xb4>)
+ 8000554:	695b      	ldr	r3, [r3, #20]
+ 8000556:	4a1c      	ldr	r2, [pc, #112]	; (80005c8 <check_ledstatus+0xb4>)
+ 8000558:	f023 0340 	bic.w	r3, r3, #64	; 0x40
+ 800055c:	6153      	str	r3, [r2, #20]
+ 800055e:	e00c      	b.n	800057a <check_ledstatus+0x66>
+	}
+	else if (!(stringcmp(rx_data,"OFF")))			// if '0' receive LED OFF
+ 8000560:	4917      	ldr	r1, [pc, #92]	; (80005c0 <check_ledstatus+0xac>)
+ 8000562:	4818      	ldr	r0, [pc, #96]	; (80005c4 <check_ledstatus+0xb0>)
+ 8000564:	f7ff ff40 	bl	80003e8 <stringcmp>
+ 8000568:	4603      	mov	r3, r0
+ 800056a:	2b00      	cmp	r3, #0
+ 800056c:	d105      	bne.n	800057a <check_ledstatus+0x66>
+	{
+		GPIOC->ODR |= (1<<6);
+ 800056e:	4b16      	ldr	r3, [pc, #88]	; (80005c8 <check_ledstatus+0xb4>)
+ 8000570:	695b      	ldr	r3, [r3, #20]
+ 8000572:	4a15      	ldr	r2, [pc, #84]	; (80005c8 <check_ledstatus+0xb4>)
+ 8000574:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+ 8000578:	6153      	str	r3, [r2, #20]
+	}
+
+	for(uint32_t d=0;d<100000;d++);
+ 800057a:	2300      	movs	r3, #0
+ 800057c:	607b      	str	r3, [r7, #4]
+ 800057e:	e002      	b.n	8000586 <check_ledstatus+0x72>
+ 8000580:	687b      	ldr	r3, [r7, #4]
+ 8000582:	3301      	adds	r3, #1
+ 8000584:	607b      	str	r3, [r7, #4]
+ 8000586:	687b      	ldr	r3, [r7, #4]
+ 8000588:	4a10      	ldr	r2, [pc, #64]	; (80005cc <check_ledstatus+0xb8>)
+ 800058a:	4293      	cmp	r3, r2
+ 800058c:	d9f8      	bls.n	8000580 <check_ledstatus+0x6c>
+	for(uint8_t i=0;i<10;i++)
+ 800058e:	2300      	movs	r3, #0
+ 8000590:	70fb      	strb	r3, [r7, #3]
+ 8000592:	e006      	b.n	80005a2 <check_ledstatus+0x8e>
+		{
+			rx_data[i] = '\0';
+ 8000594:	78fb      	ldrb	r3, [r7, #3]
+ 8000596:	4a0b      	ldr	r2, [pc, #44]	; (80005c4 <check_ledstatus+0xb0>)
+ 8000598:	2100      	movs	r1, #0
+ 800059a:	54d1      	strb	r1, [r2, r3]
+	for(uint8_t i=0;i<10;i++)
+ 800059c:	78fb      	ldrb	r3, [r7, #3]
+ 800059e:	3301      	adds	r3, #1
+ 80005a0:	70fb      	strb	r3, [r7, #3]
+ 80005a2:	78fb      	ldrb	r3, [r7, #3]
+ 80005a4:	2b09      	cmp	r3, #9
+ 80005a6:	d9f5      	bls.n	8000594 <check_ledstatus+0x80>
+		}
+		ind=0;
+ 80005a8:	4b09      	ldr	r3, [pc, #36]	; (80005d0 <check_ledstatus+0xbc>)
+ 80005aa:	2200      	movs	r2, #0
+ 80005ac:	701a      	strb	r2, [r3, #0]
+
+}
+ 80005ae:	bf00      	nop
+ 80005b0:	3708      	adds	r7, #8
+ 80005b2:	46bd      	mov	sp, r7
+ 80005b4:	bd80      	pop	{r7, pc}
+ 80005b6:	bf00      	nop
+ 80005b8:	20000000 	.word	0x20000000
+ 80005bc:	080006a0 	.word	0x080006a0
+ 80005c0:	080006a4 	.word	0x080006a4
+ 80005c4:	20000020 	.word	0x20000020
+ 80005c8:	40020800 	.word	0x40020800
+ 80005cc:	0001869f 	.word	0x0001869f
+ 80005d0:	2000002a 	.word	0x2000002a
+
+080005d4 <main>:
+
+int main(void)
+{
+ 80005d4:	b580      	push	{r7, lr}
+ 80005d6:	af00      	add	r7, sp, #0
+	UART4_config();
+ 80005d8:	f7ff fe64 	bl	80002a4 <UART4_config>
+	led_config();
+ 80005dc:	f7ff ff6c 	bl	80004b8 <led_config>
+	swt_config();
+ 80005e0:	f7ff fe1e 	bl	8000220 <swt_config>
+	for(;;)
+	{
+		check_ledstatus();
+ 80005e4:	f7ff ff96 	bl	8000514 <check_ledstatus>
+ 80005e8:	e7fc      	b.n	80005e4 <main+0x10>
+	...
+
+080005ec <Reset_Handler>:
+
+  .section .text.Reset_Handler
+  .weak Reset_Handler
+  .type Reset_Handler, %function
+Reset_Handler:
+  ldr   r0, =_estack
+ 80005ec:	480d      	ldr	r0, [pc, #52]	; (8000624 <LoopForever+0x2>)
+  mov   sp, r0          /* set stack pointer */
+ 80005ee:	4685      	mov	sp, r0
+/* Call the clock system initialization function.*/
+  bl  SystemInit
+ 80005f0:	f3af 8000 	nop.w
+
+/* Copy the data segment initializers from flash to SRAM */
+  ldr r0, =_sdata
+ 80005f4:	480c      	ldr	r0, [pc, #48]	; (8000628 <LoopForever+0x6>)
+  ldr r1, =_edata
+ 80005f6:	490d      	ldr	r1, [pc, #52]	; (800062c <LoopForever+0xa>)
+  ldr r2, =_sidata
+ 80005f8:	4a0d      	ldr	r2, [pc, #52]	; (8000630 <LoopForever+0xe>)
+  movs r3, #0
+ 80005fa:	2300      	movs	r3, #0
+  b LoopCopyDataInit
+ 80005fc:	e002      	b.n	8000604 <LoopCopyDataInit>
+
+080005fe <CopyDataInit>:
+
+CopyDataInit:
+  ldr r4, [r2, r3]
+ 80005fe:	58d4      	ldr	r4, [r2, r3]
+  str r4, [r0, r3]
+ 8000600:	50c4      	str	r4, [r0, r3]
+  adds r3, r3, #4
+ 8000602:	3304      	adds	r3, #4
+
+08000604 <LoopCopyDataInit>:
+
+LoopCopyDataInit:
+  adds r4, r0, r3
+ 8000604:	18c4      	adds	r4, r0, r3
+  cmp r4, r1
+ 8000606:	428c      	cmp	r4, r1
+  bcc CopyDataInit
+ 8000608:	d3f9      	bcc.n	80005fe <CopyDataInit>
+
+/* Zero fill the bss segment. */
+  ldr r2, =_sbss
+ 800060a:	4a0a      	ldr	r2, [pc, #40]	; (8000634 <LoopForever+0x12>)
+  ldr r4, =_ebss
+ 800060c:	4c0a      	ldr	r4, [pc, #40]	; (8000638 <LoopForever+0x16>)
+  movs r3, #0
+ 800060e:	2300      	movs	r3, #0
+  b LoopFillZerobss
+ 8000610:	e001      	b.n	8000616 <LoopFillZerobss>
+
+08000612 <FillZerobss>:
+
+FillZerobss:
+  str  r3, [r2]
+ 8000612:	6013      	str	r3, [r2, #0]
+  adds r2, r2, #4
+ 8000614:	3204      	adds	r2, #4
+
+08000616 <LoopFillZerobss>:
+
+LoopFillZerobss:
+  cmp r2, r4
+ 8000616:	42a2      	cmp	r2, r4
+  bcc FillZerobss
+ 8000618:	d3fb      	bcc.n	8000612 <FillZerobss>
+
+/* Call static constructors */
+  bl __libc_init_array
+ 800061a:	f000 f811 	bl	8000640 <__libc_init_array>
+/* Call the application's entry point.*/
+  bl main
+ 800061e:	f7ff ffd9 	bl	80005d4 <main>
+
+08000622 <LoopForever>:
+
+LoopForever:
+    b LoopForever
+ 8000622:	e7fe      	b.n	8000622 <LoopForever>
+  ldr   r0, =_estack
+ 8000624:	20020000 	.word	0x20020000
+  ldr r0, =_sdata
+ 8000628:	20000000 	.word	0x20000000
+  ldr r1, =_edata
+ 800062c:	20000004 	.word	0x20000004
+  ldr r2, =_sidata
+ 8000630:	080006b0 	.word	0x080006b0
+  ldr r2, =_sbss
+ 8000634:	20000004 	.word	0x20000004
+  ldr r4, =_ebss
+ 8000638:	2000002c 	.word	0x2000002c
+
+0800063c <ADC_IRQHandler>:
+ * @retval : None
+*/
+  .section .text.Default_Handler,"ax",%progbits
+Default_Handler:
+Infinite_Loop:
+  b Infinite_Loop
+ 800063c:	e7fe      	b.n	800063c <ADC_IRQHandler>
+	...
+
+08000640 <__libc_init_array>:
+ 8000640:	b570      	push	{r4, r5, r6, lr}
+ 8000642:	4d0d      	ldr	r5, [pc, #52]	; (8000678 <__libc_init_array+0x38>)
+ 8000644:	4c0d      	ldr	r4, [pc, #52]	; (800067c <__libc_init_array+0x3c>)
+ 8000646:	1b64      	subs	r4, r4, r5
+ 8000648:	10a4      	asrs	r4, r4, #2
+ 800064a:	2600      	movs	r6, #0
+ 800064c:	42a6      	cmp	r6, r4
+ 800064e:	d109      	bne.n	8000664 <__libc_init_array+0x24>
+ 8000650:	4d0b      	ldr	r5, [pc, #44]	; (8000680 <__libc_init_array+0x40>)
+ 8000652:	4c0c      	ldr	r4, [pc, #48]	; (8000684 <__libc_init_array+0x44>)
+ 8000654:	f000 f818 	bl	8000688 <_init>
+ 8000658:	1b64      	subs	r4, r4, r5
+ 800065a:	10a4      	asrs	r4, r4, #2
+ 800065c:	2600      	movs	r6, #0
+ 800065e:	42a6      	cmp	r6, r4
+ 8000660:	d105      	bne.n	800066e <__libc_init_array+0x2e>
+ 8000662:	bd70      	pop	{r4, r5, r6, pc}
+ 8000664:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8000668:	4798      	blx	r3
+ 800066a:	3601      	adds	r6, #1
+ 800066c:	e7ee      	b.n	800064c <__libc_init_array+0xc>
+ 800066e:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8000672:	4798      	blx	r3
+ 8000674:	3601      	adds	r6, #1
+ 8000676:	e7f2      	b.n	800065e <__libc_init_array+0x1e>
+ 8000678:	080006a8 	.word	0x080006a8
+ 800067c:	080006a8 	.word	0x080006a8
+ 8000680:	080006a8 	.word	0x080006a8
+ 8000684:	080006ac 	.word	0x080006ac
+
+08000688 <_init>:
+ 8000688:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800068a:	bf00      	nop
+ 800068c:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800068e:	bc08      	pop	{r3}
+ 8000690:	469e      	mov	lr, r3
+ 8000692:	4770      	bx	lr
+
+08000694 <_fini>:
+ 8000694:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8000696:	bf00      	nop
+ 8000698:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800069a:	bc08      	pop	{r3}
+ 800069c:	469e      	mov	lr, r3
+ 800069e:	4770      	bx	lr

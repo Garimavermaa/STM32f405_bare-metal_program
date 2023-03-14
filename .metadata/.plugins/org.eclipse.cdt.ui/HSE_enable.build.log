@@ -1,0 +1,10 @@
+15:22:20 **** Incremental Build of configuration Debug for project HSE_enable ****
+make -j12 all 
+arm-none-eabi-size   HSE_enable.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1940	      8	   1568	   3516	    dbc	HSE_enable.elf
+Finished building: default.size.stdout
+ 
+
+15:22:20 Build Finished. 0 errors, 0 warnings. (took 299ms)
+

@@ -1,0 +1,58 @@
+00:02:06 **** Incremental Build of configuration Debug for project 15.I2c ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F405RGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c: In function 'I2C_initialize':
+../Src/main.c:51:3: error: 'I2C' undeclared (first use in this function); did you mean 'I2C1'?
+   51 |   I2C->CCR =80;
+      |   ^~~
+      |   I2C1
+../Src/main.c:51:3: note: each undeclared identifier is reported only once for each function it appears in
+../Src/main.c: In function 'I2C2_byteRead':
+../Src/main.c:58:21: error: 'SR2_BUSY' undeclared (first use in this function)
+   58 |  while(I2C2->SR2 & (SR2_BUSY)){} //Wait untillbus not ready
+      |                     ^~~~~~~~
+../Src/main.c:60:15: error: 'CR1_START' undeclared (first use in this function); did you mean 'I2C_CR1_START'?
+   60 |  I2C2->CR1 |= CR1_START; // generate start
+      |               ^~~~~~~~~
+      |               I2C_CR1_START
+../Src/main.c:62:23: error: 'SR1_SB' undeclared (first use in this function); did you mean 'I2C_SR1_SB'?
+   62 |  while(!(I2C1->SR1 & (SR1_SB))){}
+      |                       ^~~~~~
+      |                       I2C_SR1_SB
+../Src/main.c:66:22: error: 'SR1_ADDR' undeclared (first use in this function); did you mean 'I2C_SR1_ADDR'?
+   66 |  while(!(I2C1->SR1 &(SR1_ADDR))){}
+      |                      ^~~~~~~~
+      |                      I2C_SR1_ADDR
+../Src/main.c:68:2: error: 'temp' undeclared (first use in this function)
+   68 |  temp =I2C2->sr2;
+      |  ^~~~
+../Src/main.c:68:12: error: 'I2C_TypeDef' has no member named 'sr2'
+   68 |  temp =I2C2->sr2;
+      |            ^~
+../Src/main.c:69:12: error: 'MDDR' undeclared (first use in this function)
+   69 |  I2C2->DR =MDDR; //MEMORY ADRESS
+      |            ^~~~
+../Src/main.c:71:8: error: expected expression before ')' token
+   71 |  while()
+      |        ^
+../Src/main.c: In function 'main':
+../Src/main.c:79:2: warning: implicit declaration of function 'gpio_initialise'; did you mean 'I2C_initialize'? [-Wimplicit-function-declaration]
+   79 |  gpio_initialise();
+      |  ^~~~~~~~~~~~~~~
+      |  I2C_initialize
+../Src/main.c:80:2: warning: implicit declaration of function 'timer3_initialize'; did you mean 'I2C_initialize'? [-Wimplicit-function-declaration]
+   80 |  timer3_initialize();
+      |  ^~~~~~~~~~~~~~~~~
+      |  I2C_initialize
+../Src/main.c:85:3: error: 'TIM3_CCR1' undeclared (first use in this function)
+   85 |   TIM3_CCR1 = 400;   // laod CCR1 value for toggling at CNT=400 (643)
+      |   ^~~~~~~~~
+../Src/main.c:86:11: error: 'TIM3_SR' undeclared (first use in this function); did you mean 'TIM3_IRQn'?
+   86 |   while(!(TIM3_SR & (1<<1))); // wait for CH1 flag CC1F to set (ref 676)
+      |           ^~~~~~~
+      |           TIM3_IRQn
+make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+
+00:02:06 Build Failed. 12 errors, 2 warnings. (took 342ms)
+

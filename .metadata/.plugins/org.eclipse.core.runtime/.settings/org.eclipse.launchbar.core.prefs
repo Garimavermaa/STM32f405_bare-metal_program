@@ -1,0 +1,17 @@
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:11.UART_SWITCH Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:HSE_enable,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:8.DAC Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:dac Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:switch Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Timer Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:stm32 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:3.swith_without_debounce Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:4.Timer_HSE Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Timer4_CMSIS_ex,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:6.Timer_input_capture Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:2.swith_with_debounce Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:My_first_prog Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:10.External_interrupt Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:UART_Ex4_string,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:11.5 UART_Ex4_string,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:13.DMA_UART,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:11.6_USART2_SWITCH2,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:5.Timer_output_capture Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Timer_output_capture Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:1.Blinking Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:SPI_Example1 Debug
+eclipse.preferences.version=1
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:1.Blinking\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:1.Blinking\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:6.Timer_input_capture\ Debug/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:8.DAC\ Debug/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:SPI\ Debug/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Timer_pwm\ Debug/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:led4\ Debug/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:led4\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:stm32\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:stm32\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:switch\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:switch\ Debug/activeLaunchTarget=null\:---

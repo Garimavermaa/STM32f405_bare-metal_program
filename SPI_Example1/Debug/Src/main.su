@@ -1,0 +1,9 @@
+../Inc/core_cm4.h:1688:22:__NVIC_EnableIRQ	16	static
+../Src/main.c:28:6:spi_slaveconfig	4	static
+../Src/main.c:42:6:spi_masterconfig	4	static
+../Src/main.c:58:6:spi_gpioconfig	4	static
+../Src/main.c:85:6:led_config	4	static
+../Src/main.c:95:6:switch_config	8	static
+../Src/main.c:111:6:EXTI9_5_IRQHandler	4	static
+../Src/main.c:124:6:EXTI3_IRQHandler	4	static
+../Src/main.c:136:5:main	16	static

@@ -1,0 +1,2 @@
+../Src/main.c:30:5:main	32	static
+../Src/main.c:65:6:gen_delay	16	static

@@ -1,0 +1,6 @@
+../Src/main.c:37:6:UART4_config	4	static
+../Src/main.c:54:6:UART4_sendchar	16	static
+../Src/main.c:60:6:UART4_receivechar	4	static
+../Src/main.c:65:6:led_config	4	static
+../Src/main.c:75:6:check_ledstatus	4	static
+../Src/main.c:87:5:main	16	static

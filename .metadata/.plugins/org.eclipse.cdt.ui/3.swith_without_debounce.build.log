@@ -1,0 +1,10 @@
+00:02:06 **** Incremental Build of configuration Debug for project 3.swith_without_debounce ****
+make -j12 all 
+arm-none-eabi-size   3.swith_without_debounce.elf 
+   text	   data	    bss	    dec	    hex	filename
+    912	      8	   1568	   2488	    9b8	3.swith_without_debounce.elf
+Finished building: default.size.stdout
+ 
+
+00:02:07 Build Finished. 0 errors, 0 warnings. (took 287ms)
+

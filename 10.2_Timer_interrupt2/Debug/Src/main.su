@@ -1,0 +1,5 @@
+../Inc/core_cm4.h:1688:22:__NVIC_EnableIRQ	16	static
+../Src/main.c:26:6:led_initialise	4	static
+../Src/main.c:35:6:timer3_initialise	4	static
+../Src/main.c:45:6:TIM3_IRQHandler	4	static
+../Src/main.c:54:5:main	16	static

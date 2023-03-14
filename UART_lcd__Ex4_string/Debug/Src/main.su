@@ -1,0 +1,7 @@
+../Inc/core_cm4.h:1688:22:__NVIC_EnableIRQ	16	static
+../Src/main.c:43:6:UART2_config	8	static
+../Src/main.c:64:6:UART2_sendchar	16	static
+../Src/main.c:70:6:UART2_sendstring	16	static
+../Src/main.c:78:6:USART2_IRQHandler	16	static
+../Src/main.c:101:6:display_recv	8	static
+../Src/main.c:110:5:main	32	static

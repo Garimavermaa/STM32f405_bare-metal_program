@@ -1,0 +1,464 @@
+23:47:45 **** Incremental Build of configuration Debug for project CAN ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'SystemClock_Config':
+../Core/Src/main.c:169:20: error: 'RCC_OscInitTypeDef' has no member named 'HSEPredivValue'
+  169 |   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+      |                    ^
+../Core/Src/main.c:169:38: error: 'RCC_HSE_PREDIV_DIV1' undeclared (first use in this function)
+  169 |   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+      |                                      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:169:38: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:173:25: error: 'RCC_PLLInitTypeDef' has no member named 'PLLMUL'; did you mean 'PLLM'?
+  173 |   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+      |                         ^~~~~~
+      |                         PLLM
+../Core/Src/main.c:173:34: error: 'RCC_PLL_MUL9' undeclared (first use in this function); did you mean 'RCC_PLLMUL_8'?
+  173 |   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+      |                                  ^~~~~~~~~~~~
+      |                                  RCC_PLLMUL_8
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+23:59:15 **** Incremental Build of configuration Debug for project CAN ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:108:18: error: 'hcan' undeclared (first use in this function); did you mean 'hcan1'?
+  108 |   HAL_CAN_Start(&hcan);
+      |                  ^~~~
+      |                  hcan1
+../Core/Src/main.c:108:18: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+00:00:57 **** Incremental Build of configuration Debug for project CAN ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:110:33: error: 'hcan' undeclared (first use in this function); did you mean 'hcan1'?
+  110 |   HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
+      |                                 ^~~~
+      |                                 hcan1
+../Core/Src/main.c:110:33: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+00:01:18 **** Incremental Build of configuration Debug for project CAN ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:124:29: error: 'hcan' undeclared (first use in this function); did you mean 'hcan1'?
+  124 |   if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, &TxData[0], &TxMailbox[0]) != HAL_OK)
+      |                             ^~~~
+      |                             hcan1
+../Core/Src/main.c:124:29: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+00:01:45 **** Incremental Build of configuration Debug for project CAN ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:110:33: error: 'hcan' undeclared (first use in this function); did you mean 'hcan1'?
+  110 |   HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
+      |                                 ^~~~
+      |                                 hcan1
+../Core/Src/main.c:110:33: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+00:02:03 **** Incremental Build of configuration Debug for project 1.Blinking ****
+make -j12 all 
+arm-none-eabi-size   1.Blinking.elf 
+   text	   data	    bss	    dec	    hex	filename
+    912	      8	   1568	   2488	    9b8	1.Blinking.elf
+Finished building: default.size.stdout
+ 
+00:02:04 **** Incremental Build of configuration Debug for project 10.External_interrupt ****
+make -j12 all 
+arm-none-eabi-size   10.External_interrupt.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1080	      8	   1568	   2656	    a60	10.External_interrupt.elf
+Finished building: default.size.stdout
+ 
+00:02:04 **** Incremental Build of configuration Debug for project 11.1_UART_SWITCH ****
+make -j12 all 
+arm-none-eabi-size   11.1_UART_SWITCH.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1372	      8	   1568	   2948	    b84	11.1_UART_SWITCH.elf
+Finished building: default.size.stdout
+ 
+00:02:04 **** Incremental Build of configuration Debug for project 11.5 UART_Ex4_string ****
+make -j12 all 
+arm-none-eabi-size   11.5\ UART_Ex4_string.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1120	      8	   1592	   2720	    aa0	11.5 UART_Ex4_string.elf
+Finished building: default.size.stdout
+ 
+00:02:05 **** Incremental Build of configuration Debug for project 11.6_USART2_SWITCH2 ****
+make -j12 all 
+arm-none-eabi-size   11.6_USART2_SWITCH2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1120	      8	   1592	   2720	    aa0	11.6_USART2_SWITCH2.elf
+Finished building: default.size.stdout
+ 
+00:02:05 **** Incremental Build of configuration Debug for project 13.DMA_UART ****
+make -j12 all 
+arm-none-eabi-size   13.DMA_UART.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1200	      8	   1584	   2792	    ae8	13.DMA_UART.elf
+Finished building: default.size.stdout
+ 
+00:02:06 **** Incremental Build of configuration Debug for project 15.I2c ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F405RGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c: In function 'I2C_initialize':
+../Src/main.c:51:3: error: 'I2C' undeclared (first use in this function); did you mean 'I2C1'?
+   51 |   I2C->CCR =80;
+      |   ^~~
+      |   I2C1
+../Src/main.c:51:3: note: each undeclared identifier is reported only once for each function it appears in
+../Src/main.c: In function 'I2C2_byteRead':
+../Src/main.c:58:21: error: 'SR2_BUSY' undeclared (first use in this function)
+   58 |  while(I2C2->SR2 & (SR2_BUSY)){} //Wait untillbus not ready
+      |                     ^~~~~~~~
+../Src/main.c:60:15: error: 'CR1_START' undeclared (first use in this function); did you mean 'I2C_CR1_START'?
+   60 |  I2C2->CR1 |= CR1_START; // generate start
+      |               ^~~~~~~~~
+      |               I2C_CR1_START
+../Src/main.c:62:23: error: 'SR1_SB' undeclared (first use in this function); did you mean 'I2C_SR1_SB'?
+   62 |  while(!(I2C1->SR1 & (SR1_SB))){}
+      |                       ^~~~~~
+      |                       I2C_SR1_SB
+../Src/main.c:66:22: error: 'SR1_ADDR' undeclared (first use in this function); did you mean 'I2C_SR1_ADDR'?
+   66 |  while(!(I2C1->SR1 &(SR1_ADDR))){}
+      |                      ^~~~~~~~
+      |                      I2C_SR1_ADDR
+../Src/main.c:68:2: error: 'temp' undeclared (first use in this function)
+   68 |  temp =I2C2->sr2;
+      |  ^~~~
+../Src/main.c:68:12: error: 'I2C_TypeDef' has no member named 'sr2'
+   68 |  temp =I2C2->sr2;
+      |            ^~
+../Src/main.c:69:12: error: 'MDDR' undeclared (first use in this function)
+   69 |  I2C2->DR =MDDR; //MEMORY ADRESS
+      |            ^~~~
+../Src/main.c:71:8: error: expected expression before ')' token
+   71 |  while()
+      |        ^
+../Src/main.c: In function 'main':
+../Src/main.c:79:2: warning: implicit declaration of function 'gpio_initialise'; did you mean 'I2C_initialize'? [-Wimplicit-function-declaration]
+   79 |  gpio_initialise();
+      |  ^~~~~~~~~~~~~~~
+      |  I2C_initialize
+../Src/main.c:80:2: warning: implicit declaration of function 'timer3_initialize'; did you mean 'I2C_initialize'? [-Wimplicit-function-declaration]
+   80 |  timer3_initialize();
+      |  ^~~~~~~~~~~~~~~~~
+      |  I2C_initialize
+../Src/main.c:85:3: error: 'TIM3_CCR1' undeclared (first use in this function)
+   85 |   TIM3_CCR1 = 400;   // laod CCR1 value for toggling at CNT=400 (643)
+      |   ^~~~~~~~~
+../Src/main.c:86:11: error: 'TIM3_SR' undeclared (first use in this function); did you mean 'TIM3_IRQn'?
+   86 |   while(!(TIM3_SR & (1<<1))); // wait for CH1 flag CC1F to set (ref 676)
+      |           ^~~~~~~
+      |           TIM3_IRQn
+make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+00:02:06 **** Incremental Build of configuration Debug for project 2.swith_with_debounce ****
+make -j12 all 
+arm-none-eabi-size   2.swith_with_debounce.elf 
+   text	   data	    bss	    dec	    hex	filename
+    872	      8	   1568	   2448	    990	2.swith_with_debounce.elf
+Finished building: default.size.stdout
+ 
+00:02:06 **** Incremental Build of configuration Debug for project 3.swith_without_debounce ****
+make -j12 all 
+arm-none-eabi-size   3.swith_without_debounce.elf 
+   text	   data	    bss	    dec	    hex	filename
+    912	      8	   1568	   2488	    9b8	3.swith_without_debounce.elf
+Finished building: default.size.stdout
+ 
+00:02:07 **** Incremental Build of configuration Debug for project 4.Timer_HSE ****
+make -j12 all 
+arm-none-eabi-size   4.Timer_HSE.elf 
+   text	   data	    bss	    dec	    hex	filename
+    860	      8	   1568	   2436	    984	4.Timer_HSE.elf
+Finished building: default.size.stdout
+ 
+00:02:07 **** Incremental Build of configuration Debug for project 5.Timer_output_capture ****
+make -j12 all 
+arm-none-eabi-size   5.Timer_output_capture.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1016	      8	   1568	   2592	    a20	5.Timer_output_capture.elf
+Finished building: default.size.stdout
+ 
+00:02:07 **** Incremental Build of configuration Debug for project 6.Timer_input_capture ****
+make -j12 all 
+arm-none-eabi-size   6.Timer_input_capture.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1220	      8	   1576	   2804	    af4	6.Timer_input_capture.elf
+Finished building: default.size.stdout
+ 
+00:02:08 **** Incremental Build of configuration Debug for project 8.DAC ****
+make -j12 all 
+arm-none-eabi-size   8.DAC.elf 
+   text	   data	    bss	    dec	    hex	filename
+    964	      8	   1568	   2540	    9ec	8.DAC.elf
+Finished building: default.size.stdout
+ 
+00:02:08 **** Incremental Build of configuration Debug for project 9.Timer_input_LCD ****
+make -j12 all 
+arm-none-eabi-size   9.Timer_input_LCD.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1940	      8	   1568	   3516	    dbc	9.Timer_input_LCD.elf
+Finished building: default.size.stdout
+ 
+00:02:08 **** Incremental Build of configuration Debug for project CAN ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:124:29: error: 'hcan' undeclared (first use in this function); did you mean 'hcan1'?
+  124 |   if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, &TxData[0], &TxMailbox[0]) != HAL_OK)
+      |                             ^~~~
+      |                             hcan1
+../Core/Src/main.c:124:29: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+00:02:09 **** Incremental Build of configuration Debug for project LCD ****
+make -j12 all 
+arm-none-eabi-size   LCD.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4268	    108	   1588	   5964	   174c	LCD.elf
+Finished building: default.size.stdout
+ 
+00:02:09 **** Incremental Build of configuration Debug for project SPI ****
+make -j12 all 
+arm-none-eabi-size   SPI.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4604	    108	   1588	   6300	   189c	SPI.elf
+Finished building: default.size.stdout
+ 
+00:02:10 **** Incremental Build of configuration Debug for project dac ****
+make -j12 all 
+arm-none-eabi-size   dac.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4764	    108	   1588	   6460	   193c	dac.elf
+Finished building: default.size.stdout
+ 
+00:02:10 **** Incremental Build of configuration Debug for project time ****
+make -j12 all 
+arm-none-eabi-size   time.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7308	     20	   1636	   8964	   2304	time.elf
+Finished building: default.size.stdout
+ 
+23:06:26 **** Incremental Build of configuration Debug for project SPI ****
+make -j12 all 
+arm-none-eabi-size   SPI.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4604	    108	   1588	   6300	   189c	SPI.elf
+Finished building: default.size.stdout
+ 
+23:06:46 **** Incremental Build of configuration Debug for project SPI ****
+make -j12 all 
+arm-none-eabi-size   SPI.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4604	    108	   1588	   6300	   189c	SPI.elf
+Finished building: default.size.stdout
+ 
+23:14:47 **** Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F405RGTx -c -I../Inc -I"D:/STM32/CMSIS/Include" -I"D:/STM32/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+../Src/main.c:20:10: fatal error: stm32f4xx.h: No such file or directory
+   20 | #include "stm32f4xx.h"
+      |          ^~~~~~~~~~~~~
+compilation terminated.
+make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+23:15:21 **** Clean-only build of configuration Debug for project SPI_Example1 ****
+make -j12 clean 
+rm -rf ./Startup/startup_stm32f405rgtx.d ./Startup/startup_stm32f405rgtx.o
+rm -rf ./Src/main.d ./Src/main.o ./Src/main.su ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su
+rm -rf SPI_Example1.elf SPI_Example1.list SPI_Example1.map default.size.stdout
+ 
+23:15:21 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f405rgtx.d" -MT"Startup/startup_stm32f405rgtx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Startup/startup_stm32f405rgtx.o" "../Startup/startup_stm32f405rgtx.s"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F405RGTx -c -I../Inc -I"D:/STM32/CMSIS/Include" -I"D:/STM32/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F405RGTx -c -I../Inc -I"D:/STM32/CMSIS/Include" -I"D:/STM32/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F405RGTx -c -I../Inc -I"D:/STM32/CMSIS/Include" -I"D:/STM32/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/sysmem.o"
+arm-none-eabi-gcc -o "SPI_Example1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\garim\Desktop\STM32F405\SPI_Example1\STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SPI_Example1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SPI_Example1.elf
+ 
+arm-none-eabi-size   SPI_Example1.elf 
+arm-none-eabi-objdump -h -S  SPI_Example1.elf  > "SPI_Example1.list"
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+Finished building: SPI_Example1.list
+ 
+23:15:50 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+12:13:10 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F405RGTx -c -I../Inc -I"D:/STM32/CMSIS/Include" -I"D:/STM32/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "SPI_Example1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\garim\Desktop\STM32F405\SPI_Example1\STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SPI_Example1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SPI_Example1.elf
+ 
+arm-none-eabi-size   SPI_Example1.elf 
+arm-none-eabi-objdump -h -S  SPI_Example1.elf  > "SPI_Example1.list"
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+Finished building: SPI_Example1.list
+ 
+12:13:22 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+12:18:34 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+15:08:01 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+15:09:41 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+15:21:43 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+15:29:26 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+15:30:31 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+15:32:57 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+15:33:27 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+15:33:45 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+15:57:22 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F405RGTx -c -I../Inc -I"D:/STM32/CMSIS/Include" -I"D:/STM32/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "SPI_Example1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\garim\Desktop\STM32F405\SPI_Example1\STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SPI_Example1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SPI_Example1.elf
+ 
+arm-none-eabi-size   SPI_Example1.elf 
+arm-none-eabi-objdump -h -S  SPI_Example1.elf  > "SPI_Example1.list"
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+Finished building: SPI_Example1.list
+ 
+15:59:54 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+16:03:03 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+16:22:18 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+16:56:50 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+17:04:21 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+17:05:21 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+17:05:52 **** Build of configuration Debug for project 1.Blinking ****
+make -j12 all 
+arm-none-eabi-size   1.Blinking.elf 
+   text	   data	    bss	    dec	    hex	filename
+    912	      8	   1568	   2488	    9b8	1.Blinking.elf
+Finished building: default.size.stdout
+ 
+17:17:02 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 
+17:17:14 **** Incremental Build of configuration Debug for project SPI_Example1 ****
+make -j12 all 
+arm-none-eabi-size   SPI_Example1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1736	      8	   1568	   3312	    cf0	SPI_Example1.elf
+Finished building: default.size.stdout
+ 

@@ -1,0 +1,20 @@
+15:35:58 **** Build of configuration Debug for project Timer_pwm ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F405RGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c:24:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
+   24 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+      |    ^~~~~~~
+arm-none-eabi-gcc -o "Timer_pwm.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\garim\Desktop\STM32F405\Timer_pwm\STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Timer_pwm.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Timer_pwm.elf
+ 
+arm-none-eabi-size   Timer_pwm.elf 
+arm-none-eabi-objdump -h -S  Timer_pwm.elf  > "Timer_pwm.list"
+   text	   data	    bss	    dec	    hex	filename
+   1244	      8	   1568	   2820	    b04	Timer_pwm.elf
+Finished building: default.size.stdout
+ 
+Finished building: Timer_pwm.list
+ 
+
+15:36:01 Build Finished. 0 errors, 1 warnings. (took 2s.381ms)
+

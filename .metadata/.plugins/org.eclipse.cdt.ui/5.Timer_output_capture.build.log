@@ -1,0 +1,10 @@
+00:02:07 **** Incremental Build of configuration Debug for project 5.Timer_output_capture ****
+make -j12 all 
+arm-none-eabi-size   5.Timer_output_capture.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1016	      8	   1568	   2592	    a20	5.Timer_output_capture.elf
+Finished building: default.size.stdout
+ 
+
+00:02:07 Build Finished. 0 errors, 0 warnings. (took 269ms)
+

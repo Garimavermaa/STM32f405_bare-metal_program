@@ -1,0 +1,10 @@
+11:01:43 **** Incremental Build of configuration Debug for project 11.UART_Single_char ****
+make -j12 all 
+arm-none-eabi-size   11.UART_Single_char.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1156	      8	   1568	   2732	    aac	11.UART_Single_char.elf
+Finished building: default.size.stdout
+ 
+
+11:01:43 Build Finished. 0 errors, 0 warnings. (took 281ms)
+
